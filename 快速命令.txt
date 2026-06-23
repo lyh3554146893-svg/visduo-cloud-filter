@@ -1,0 +1,23 @@
+第一步：部署环境
+cloud_deploy.bat
+
+第二步：先跑最稳初筛
+cloud_filter_upload.bat D:\data --disable_yolo --enable_copyright --enable_ocr --copy_mode all
+
+筛通用主体 person / cell phone
+cloud_filter_upload.bat D:\data --expected person 'cell phone' --enable_copyright --copy_mode all
+
+云端已有数据，不上传
+cloud_filter_server_path.bat /root/autodl-tmp/data --disable_yolo --enable_copyright --enable_ocr --copy_mode all
+
+上传自定义模型
+cloud_upload_model.bat D:\models\best.pt
+
+用自定义模型筛选
+cloud_filter_upload.bat D:\data --model /root/autodl-tmp/visduo/model/best.pt --expected face phone smoke --enable_copyright --copy_mode all
+
+预标注
+cloud_prelabel_upload.bat D:\visduo_cloud_filter_clean\cloud_output_时间戳 --model yolov8n.pt --save_preview
+
+用自定义模型预标注
+cloud_prelabel_upload.bat D:\visduo_cloud_filter_clean\cloud_output_时间戳 --model /root/autodl-tmp/visduo/model/best.pt --keep_names face phone smoke --save_preview

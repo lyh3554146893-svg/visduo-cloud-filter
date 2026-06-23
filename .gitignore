@@ -1,0 +1,9 @@
+cloud_config.txt
+cloud_output_*/
+prelabel_output_*/
+local_output_*/
+__pycache__/
+*.pyc
+*.pt
+*.zip
+*.7z
